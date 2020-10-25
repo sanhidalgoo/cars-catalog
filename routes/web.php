@@ -18,7 +18,7 @@ Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
 
-//Route::get('/catalog', 'CarController@index')->name('cars.index');
+//Route::get('/catalog', 'App\Http\Controllers\CarController@index')->name('cars.index');
 // Route::get('/catalog/create', 'CarController@create')->name('cars.create');
 // Route::get('/catalog/{car}/edit', 'CarController@edit')->name('cars.edit');
 // Route::patch('/catalog/{car}/edit', 'CarController@update')->name('cars.update');

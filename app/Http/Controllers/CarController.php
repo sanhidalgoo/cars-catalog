@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
+use App\Models\Car;
 
 class CarController extends Controller
 {
@@ -14,7 +15,9 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('cars.index');
+        return view('cars.index', [
+            'cars' => Car::latest()->paginate()
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create', [
+            'car' => new Car    //Se pasa un proyecto vacío (unificación de edit y create forms)
+        ]);
     }
 
     /**
@@ -35,7 +40,9 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Car::create($request->validated()); // ['title', 'url', 'description']
+
+        return redirect()->route('cars.index')->with('status', 'The Car entrie was created succesfully');
     }
 
     /**
@@ -44,9 +51,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Car $car)
     {
-        //
+        return view('cars.show', [
+            'car' => $car
+        ]); 
     }
 
     /**
@@ -55,9 +64,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('cars.edit',[
+            'car' => $car
+        ]);
     }
 
     /**
@@ -67,9 +78,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Car $car, $id)
     {
-        //
+        $car->update($request->validated());
+
+        return redirect()->route('projects.show', $car)->with('status','The car entrie was updated successfully');
     }
 
     /**
@@ -78,8 +91,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return redirect()->route('cars.index')->with('status','The car entrie was deleted successfully');
     }
 }
