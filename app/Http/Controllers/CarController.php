@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCarRequest;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use App\Models\Car;
+
 
 class CarController extends Controller
 {
@@ -38,9 +40,9 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCarRequest $request)
     {
-        Car::create($request->validated()); // ['title', 'url', 'description']
+        Car::create($request->validated()); // ['make', 'model', 'year', 'mileage']
 
         return redirect()->route('cars.index')->with('status', 'The Car entrie was created succesfully');
     }

@@ -13,5 +13,5 @@
     </form>
 
 
-    <p>{{ $car->model }}</p>
+    <p><strong>Model: </strong>{{ $car->model }}</p>
 @endsection
