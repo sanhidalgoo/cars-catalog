@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCarRequest;
+use App\Http\Requests\SaveCarRequest;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use App\Models\Car;
@@ -30,7 +30,7 @@ class CarController extends Controller
     public function create()
     {
         return view('cars.create', [
-            'car' => new Car    //Se pasa un proyecto vacío (unificación de edit y create forms)
+            'car' => new Car    
         ]);
     }
 
@@ -40,7 +40,7 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCarRequest $request)
+    public function store(SaveCarRequest $request)
     {
         Car::create($request->validated()); // ['make', 'model', 'year', 'mileage']
 
@@ -80,11 +80,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Car $car, $id)
+    public function update(Car $car, SaveCarRequest $request)
     {
         $car->update($request->validated());
 
-        return redirect()->route('projects.show', $car)->with('status','The car entrie was updated successfully');
+        return redirect()->route('cars.show', $car)->with('status','The car entrie was updated successfully');
     }
 
     /**

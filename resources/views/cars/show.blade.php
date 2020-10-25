@@ -14,4 +14,6 @@
 
 
     <p><strong>Model: </strong>{{ $car->model }}</p>
+    <p><strong>Year: </strong>{{ $car->year }}</p>
+    <p><strong>Mileage: </strong>{{ $car->mileage }}</p>
 @endsection
