@@ -27,3 +27,6 @@ Route::view('/contact', 'contact')->name('contact');
 // Route::delete('/catalog/{car}', 'CarController@destroy')->name('cars.destroy');
 
 Route::resource('cars', 'App\Http\Controllers\CarController');
+Auth::routes();
+
+//  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -6,8 +6,9 @@
 @section('content')
     <h1>Catalog</h1>
 
-    <a href="{{ route('cars.create') }}">Add Projects</a>
-
+    @auth
+        <a href="{{ route('cars.create') }}">Add Projects</a>
+    @endauth
 
     <ul>
 

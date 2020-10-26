@@ -10,6 +10,12 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show');
+    }
+    
     /**
      * Display a listing of the resource.
      *
