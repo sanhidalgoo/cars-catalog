@@ -4,14 +4,17 @@
 
 
 @section('content')
-    <h1>Edit Car Entrie</h1>
+    <div class="container">
 
-    @include('partials.validation-errors')
+        @include('partials.validation-errors')
 
-    <form method="POST" action="{{ route('cars.update', $car) }}">
-        @method('PATCH')
+        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('cars.update', $car) }}">
+            <h1 class="display-4">Edit Car Entrie</h1>
+            <hr>
+            @method('PATCH')
 
-        @include('cars._form', ['btnText' => 'Update'])
+            @include('cars._form', ['btnText' => 'Update'])
 
-    </form>
+        </form>
+    </div>
 @endsection

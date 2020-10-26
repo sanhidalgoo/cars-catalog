@@ -4,13 +4,16 @@
 
 
 @section('content')
-    <h1>Create a New Car Entrie</h1>
+    <div class="container">
 
-    @include('partials.validation-errors')
 
-    <form method="POST" action="{{ route('cars.store') }}">
-        
-        @include('cars._form', ['btnText' => 'Save'])
+        @include('partials.validation-errors')
 
-    </form>
+        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('cars.store') }}">
+            <h1 class="display-4">Create a New Car Entrie</h1>
+            <hr>
+            @include('cars._form', ['btnText' => 'Save'])
+
+        </form>
+    </div>
 @endsection
